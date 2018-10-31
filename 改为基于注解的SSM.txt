@@ -1,0 +1,12 @@
+实现思路：
+	1.继承AbstractAnnotationConfigDispatcherServletInitializer，servlet可以自动扫描
+	2.在AppConfig中配置和mvc相关的bean，实现WebMvcConfig接口
+		a.视图解析器
+		b.<mvc:default-handler-mapping/>
+		c.<mvc:annotation-driven/>
+		d.controller包的扫描
+	3.在GlobalConfig中配置
+		a.数据源的bean
+		b.mybatis的sqlSesssionFactoryBean
+		c.@MapperScan扫描dao接口，转换为bean自动注入
+		d.@PropertySource外部配置文件的引入

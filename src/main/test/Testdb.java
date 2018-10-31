@@ -1,4 +1,5 @@
 import com.mysql.jdbc.Driver;
+import config.GlobalConfig;
 import entity.Record;
 import org.junit.Test;
 import org.mybatis.generator.api.MyBatisGenerator;
@@ -8,6 +9,7 @@ import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.File;
@@ -41,6 +43,13 @@ public class Testdb {
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config,
                 callback, warnings);
         myBatisGenerator.generate(null);
+    }
+
+    @Test
+    public void testIOC(){
+        AnnotationConfigApplicationContext context
+                = new AnnotationConfigApplicationContext(GlobalConfig.class);
+        context.getBean("dataSource");
     }
 
 
