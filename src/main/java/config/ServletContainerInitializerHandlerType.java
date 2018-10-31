@@ -33,6 +33,18 @@ public class ServletContainerInitializerHandlerType extends AbstractAnnotationCo
         return new String[]{"/"};
     }
 
-
-
+    /**
+     * @Description 这里设置的过滤器是和DispatcherServlet的url一样的
+     * @Author LaiYu
+     * @Date 2018/10/31 16:52
+     * @Param []
+     * @return javax.servlet.Filter[]
+     **/
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        return new Filter[]{characterEncodingFilter};
+    }
 }
