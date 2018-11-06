@@ -40,20 +40,20 @@ public class GlobalConfig {
 
     @Bean
     public DataSource dataSource123(){
-        System.out.println("dataSource创建啦");
+        //System.out.println("dataSource创建啦");
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUsername(username);
         dataSource.setPassword(password);
         dataSource.setDriverClassName(driverClass);
         dataSource.setUrl(url);
-        System.out.println("dataSource创建完成");
+        //System.out.println("dataSource创建完成");
         return dataSource;
     }
 
 
     @Bean
     public SqlSessionFactoryBean sqlSessionFactoryBean() throws IOException {
-        System.out.println("sqlSessionFactoryBean创建啦");
+        //System.out.println("sqlSessionFactoryBean创建啦");
         SqlSessionFactoryBean sqlSessionFactoryBean= new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource123());
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();

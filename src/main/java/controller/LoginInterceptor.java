@@ -16,6 +16,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
         if(user == null){
+            System.out.println("LoginInterceptor起作用了===");
             request.getRequestDispatcher("/invalidLogin").forward(request,response);
              return false;
         }

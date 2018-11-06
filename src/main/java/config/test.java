@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class test {
     public static void main(String[] args) throws SQLException {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(GlobalConfig.class);
         for(String s: context.getBeanDefinitionNames()){
             System.out.println(s);
         }

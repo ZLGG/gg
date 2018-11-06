@@ -47,10 +47,10 @@ public class AppConfig implements WebMvcConfigurer {
      * @Param [registry]
      * @return void
      **/
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new LoginInterceptor());
-//    }
-
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor()).excludePathPatterns(
+                "/","/invalidLogin","/index","/login");
+    }
 
 }
