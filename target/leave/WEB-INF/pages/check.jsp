@@ -50,11 +50,11 @@
     <%@include file="components/bottom.jsp"%>
 </div>
 <script src="/static/layui/layui.js"></script>
-<%--模版选择器--%>
+<%--模版选择器recordHref--%>
 <script type="text/html" id="barDemo">
         <a  class="layui-btn layui-btn-primary layui-btn-xs" href="/recordDetail?record_id={{d.recordId}}" target="_blank">详情</a>
-        <a lay-event="approve" id="approveBtn" class="layui-btn layui-btn-xs" recordHref="/approve?record_id={{d.recordId}}">批准</a>
-        <a lay-event="reject" class="layui-btn layui-btn-danger layui-btn-xs" recordHref="/reject?record_id={{d.recordId}}">拒绝</a>
+        <a lay-event="approve" id="approveBtn" class="layui-btn layui-btn-xs" href="/approve?record_id={{d.recordId}}">批准</a>
+        <a lay-event="reject" class="layui-btn layui-btn-danger layui-btn-xs" href="/reject?record_id={{d.recordId}}">拒绝</a>
 </script>
 
 <%--拒绝表单--%>

@@ -21,7 +21,7 @@
         </fieldset>
        <div class="layui-col-row">
            <div class="layui-col-md7 layui-col-md-offset2">
-               <form class="layui-form" action="">
+               <form class="layui-form" action="/addRecord" method="post">
                    <div class="layui-form-item">
                        <label class="layui-form-label">申请人</label>
                        <div class="layui-form-mid layui-word-aux">${sessionScope.user.username}</div>
@@ -58,7 +58,7 @@
                    </div>
                    <div class="layui-form-item">
                        <div class="layui-input-block">
-                           <button class="layui-btn" lay-submit lay-filter="formBtn">立即提交</button>
+                           <button class="layui-btn" lay-submit lay-filter="" >立即提交</button>
                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                        </div>
                    </div>
@@ -69,9 +69,9 @@
 
     </div>
 
-    <%@include file="components/bottom.jsp"%>
+    <script type="text/javascript" src="/static/layui/layui.js"></script>
 </div>
-<script src="/static/layui/layui.js"></script>
+<script src="../../../static/layui/layui.js"></script>
 <script>
     //JavaScript代码区域
     layui.use(['form','laydate', 'jquery', 'layer'], function(){
@@ -85,10 +85,10 @@
         laydate.render({
             elem: "#start_date_input"
         });
-        form.on("submit(formBtn)", function(data){
+        form.on('submit(formDemo)', function(data){
             console.log(data);
             $.ajax({
-                url: '/addRecord',
+                url: "/addRecord",
                 type: 'post',
                 data: data.field,
                 success: function(result){

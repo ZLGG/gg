@@ -50,7 +50,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block p5">
-                <button class="layui-btn" lay-submit lay-filter="*" style='width:100%;'>登录</button>
+                <button class="layui-btn" lay-submit lay-filter="*" style='width:100%;' onclick="/login">登录</button>
             </div>
         </div>
     </form>
@@ -60,7 +60,7 @@
 
 
 <script type="text/javascript" src="/static/layui/layui.js"></script>
-<script>
+<%--<script>
     //Demo
     layui.use(['form','layer','jquery'], function(){
         var form = layui.form;
@@ -78,17 +78,19 @@
                     }else{
                         layer.msg(result.message, {time: 1000});
                         setTimeout(function () {
-                            location.href = "/index";
+                            window.location.href = "/index";
                         }, 1000)
                     }
+                },
+                error: function (result) {
+                    console.log(result);
                 }
-            })
-            //console.log(data);
-            return false;
-        })
-
+            });
+            console.log(data);
+           // return false;
+        });
     });
-</script>
+</script>--%>
 
 
 </body>

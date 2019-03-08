@@ -127,7 +127,10 @@ public class RecordService {
     //返回一个用户自己的请假单
     public List<Record> getUserLeave(User user){
         RecordExample example = new RecordExample();
+        String string = user.getUsername();
         example.createCriteria().andRecordProposerEqualTo(user.getUsername());
-        return recordMapper.selectByExample(example);
+        List<Record> records = recordMapper.selectByExample(example);
+        System.out.println(records.toString());
+        return records;
     }
 }

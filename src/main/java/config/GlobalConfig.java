@@ -1,5 +1,6 @@
 package config;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
@@ -21,45 +22,47 @@ import java.io.IOException;
  */
 @Configuration
 @ComponentScan(basePackages = "service")
-@PropertySource(value = {"classpath:jdbc.properties"})//数据库外部配置
+//@PropertySource(value = {"classpath:jdbc.properties"})//数据库外部配置
+//@MapperScan(basePackages = {"dao"},sqlSessionFactoryRef = "sqlSessionFactory")
 @MapperScan(basePackages = "dao") //spring-mybatis整合注解
 public class GlobalConfig {
 
-    @Value("${jdbc.username}")
+   /* @Value("${jdbc.username}")
      private String username;
 
     @Value("${jdbc.password}")
     private String password;
 
-    @Value("${jdbc.driverClass}")
+    @Value("${jdbc.driver}")
     private String driverClass;
 
     @Value("${jdbc.url}")
-    private String url;
+    private String url;*/
 
 
     @Bean
     public DataSource dataSource123(){
         //System.out.println("dataSource创建啦");
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        dataSource.setDriverClassName(driverClass);
-        dataSource.setUrl(url);
+        dataSource.setUsername("root");
+        //String root = password;
+        dataSource.setPassword("root");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/leave?characterEncoding=utf8");
         //System.out.println("dataSource创建完成");
         return dataSource;
     }
 
 
-    @Bean
-    public SqlSessionFactoryBean sqlSessionFactoryBean() throws IOException {
+    @Bean(name = "sqlSessionFactory")
+    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
         //System.out.println("sqlSessionFactoryBean创建啦");
         SqlSessionFactoryBean sqlSessionFactoryBean= new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource123());
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:/mapper/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:/mapper"));
 
-        return sqlSessionFactoryBean;
+        return sqlSessionFactoryBean.getObject();
     }
 
 //    @Bean

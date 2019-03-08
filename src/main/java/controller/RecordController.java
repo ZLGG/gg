@@ -27,9 +27,9 @@ public class RecordController {
     private HistoryService historyService;
 
     //填写请假单时候的提交
-    @ResponseBody
+    //@ResponseBody
     @RequestMapping(value = "/addRecord", method = RequestMethod.POST)
-    public Result addRecord(Record record){
+    public String addRecord(Record record){
         try {
             //添加到record表中
             Record record1 = recordService.addRecord(record);
@@ -43,10 +43,12 @@ public class RecordController {
             }
             History history = historyService.addOneHistory(record1.getRecordId(),operationMessage,"无");
             //如果是第二次申请
-            return new Result(200, "操作成功", record1);
+            //return new Result(200, "操作成功", record1);
+            return "myLeave";
         }catch (RuntimeException e){
             e.printStackTrace();
-            return new Result(400, "失败啊了", null);
+            //return new Result(400, "失败啊了", null);
+            return "myLeave";
         }
     }
 
@@ -56,6 +58,12 @@ public class RecordController {
         Record record = recordService.getOneById(recordId);
         model.addAttribute("record", record);
         return "recordDetail";
+    }
+    @RequestMapping(value = "/recordEdit", method = RequestMethod.GET)
+    public String editRecordDetail(@RequestParam("record_id") Integer recordId, Model model){
+        Record record = recordService.getOneById(recordId);
+        model.addAttribute("record", record);
+        return "recordEdit";
     }
 
 
@@ -107,9 +115,9 @@ public class RecordController {
 
     //拒绝一个请假申请
     @ResponseBody
-    @RequestMapping(value = "/reject", method = RequestMethod.POST)
+    @RequestMapping(value = "/reject")
     public Result reject(@RequestParam("record_id")Integer recordId,
-                         @RequestParam("reason") String reason,
+                         @RequestParam(value = "reason" ,required = false) String reason,
                          HttpSession session){
         User user = (User) session.getAttribute("user");
        try{
@@ -136,6 +144,10 @@ public class RecordController {
     public String gotoGetAll(){
         return "allLeave";
     }
+    @RequestMapping("/toMyLeave")
+    public String toMyLeaveAll(){
+        return "myLeave";
+    }
 
     //更新一条记录 用于编辑申请或者重新申请
     @ResponseBody
@@ -159,4 +171,6 @@ public class RecordController {
         simpleDateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(simpleDateFormat, true));
     }
+
+
 }

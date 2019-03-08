@@ -35,6 +35,59 @@
 </head>
 <body>
 <div class="center">
+    <div class="header_btn">
+        <a href="#" class="search"></a>
+        <a href="#" class="user"></a>
+        <div class="buycar"><i></i>购物车
+            <!--悬浮购物车div  start -->
+            <div class="minicar">
+                <div class="minicar-body">
+                    <div class="minicar-header">
+                        <span>我的购物车</span>
+                        <span>数量</span>
+                        <span>价格</span>
+                    </div>
+                    <div class="minicar-cont">
+                        <!--<p>您的购物车里没有任何商品</p>-->
+                        <ul>
+                            <li>
+												<span>
+													<a href="#">
+														<img src="temp/hot_product/p1.jpg">
+														<span>如新日间防御美颜乳</span>
+													</a>
+												</span>
+                                <span>1</span>
+                                <span>￥450.00</span>
+                            </li>
+                            <li>
+												<span>
+
+													<a href="#">
+													<img src="temp/hot_product/p2.jpg">
+													<span>如新活颜微晶焕肤霜</span>
+													</a>
+												</span>
+                                <span>1</span>
+                                <span>￥210.00</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="minicar-total">
+                        <span>共2件商品</span>
+                        <span>合计<span>￥660</span></span>
+                    </div>
+                    <div class="minicar-btns">
+                        <a href="javascript:;">去结算</a>
+                        <!-------无商品时按钮样式-------->
+                        <!--<a href="javascript:;" class="btn-unable">去结算</a>-->
+                    </div>
+                </div>
+            </div>
+            <!--悬浮购物车div  end -->
+        </div>
+
+    </div>
     <h1>登录</h1>
     <hr>
     <form class="layui-form" action="" method="post" style="margin-top:30px;">
@@ -50,7 +103,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block p5">
-                <button class="layui-btn" lay-submit lay-filter="*" style='width:100%;'>登录</button>
+                <button class="layui-btn" lay-submit lay-filter="*" style='width:100%;' onclick="/login">登录</button>
             </div>
         </div>
     </form>
@@ -78,15 +131,17 @@
                     }else{
                         layer.msg(result.message, {time: 1000});
                         setTimeout(function () {
-                            location.href = "/index";
+                            window.location.href = "/index";
                         }, 1000)
                     }
+                },
+                error: function (result) {
+                    console.log(result);
                 }
-            })
-            //console.log(data);
-            return false;
-        })
-
+            });
+            console.log(data);
+           // return false;
+        });
     });
 </script>
 

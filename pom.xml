@@ -112,6 +112,15 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <finalName>leave</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
@@ -151,6 +160,7 @@
             <failOnMissingWebXml>true</failOnMissingWebXml>
           </configuration>
         </plugin>
+
       </plugins>
     </pluginManagement>
   </build>

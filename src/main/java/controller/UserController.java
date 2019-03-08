@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.RecordService;
 import service.UserService;
+import vo.Result;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
@@ -49,5 +50,11 @@ public class UserController {
     public String myLeave(){
         return "myLeave";
     }
+
+    @RequestMapping("/test1")
+    public String test() {
+        return "test";
+    }
+
 
 }

@@ -33,7 +33,7 @@
 <%--模版选择器--%>
 <script type="text/html" id="barDemo">
         {{# if(d.statusId==0){ }}
-                <a class="layui-btn layui-btn-xs" href="javascript:;" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-xs" <%--href="javascript:;"--%><%-- lay-event="edit"--%> <%--onclick="editRecord()--%> href="/recordEdit?record_id={{d.recordId}}" target="_blank">编辑</a>
         {{# } }}
         {{# if(d.statusId==5){ }}
             <a class="layui-btn layui-btn-xs" href="javascript:;" lay-event="repeat">重新申请</a>
@@ -53,6 +53,37 @@
     function dateConvert3(dateNumber){
         var date = new Date(dateNumber.endTime);
         return date.getFullYear()+'-'+(date.getMonth()+1)+"-"+date.getDate();
+    }
+    function editRecord() {
+        //if (obj.event == 'repeat') {
+            index = layer.open({
+                title: '重新提交申请',
+                type: 1,
+                content: $('#repeatForm'),
+                area: ['780px', '460px'],
+                success: function (layero, index) {//成功的时候填充表单
+                    //渲染action地址
+                    // $('#form').attr('action','/submitAgain');
+
+                    $('option').each(function () {
+                        if ($(this).attr('value') == obj.data.typeId) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+                    $('#recordIdInput').val(obj.data.recordId);
+                    $('#start_date_input').val(num(obj.data.startTime));
+                    $('#end_date_input').val(num(obj.data.endTime));
+                    laydate.render({
+                        elem: "#end_date_input"
+                    });
+                    laydate.render({
+                        elem: "#start_date_input"
+                    });
+                    $('textarea[name=recordReason]').val(obj.data.recordReason);
+                    form.render();
+                }
+            });
+       // }
     }
 
     //JavaScript代码区域

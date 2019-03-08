@@ -14,7 +14,7 @@
                 <a class="" href="javascript:;">请假</a>
                 <dl class="layui-nav-child">
                     <dd><a href="/index">申请请假</a></dd>
-                    <dd><a href="/myLeave">我的请假</a></dd>
+                    <dd><a href="/toMyLeave">我的请假</a></dd>
                     <dd><a href="/check">审批请假</a></dd>
                     <%--<dd><a href="/gotoGetAll">所有请假单(测试用)</a></dd>--%>
                 </dl>

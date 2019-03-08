@@ -82,4 +82,18 @@ public class Record {
     public void setStatusId(Integer statusId) {
         this.statusId = statusId;
     }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "recordId=" + recordId +
+                ", recordProposer='" + recordProposer + '\'' +
+                ", recordTime=" + recordTime +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", recordReason='" + recordReason + '\'' +
+                ", typeId=" + typeId +
+                ", statusId=" + statusId +
+                '}';
+    }
 }
